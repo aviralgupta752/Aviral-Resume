@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aviral Gupta — Performance Reviews</title>
+  <meta name="description" content="Quarterly manager performance evaluations for Aviral Gupta, FY25 Q3 through FY27 Q1." />
   <style>
     * { box-sizing: border-box; }
     body {
@@ -15,30 +16,58 @@
       -webkit-font-smoothing: antialiased;
     }
     .wrap { max-width: 1072px; margin: 0 auto; padding: 48px 24px 80px; }
-    h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
-    .sub { color: #6b7280; font-size: 14px; margin: 6px 0 36px; }
+
+    .hero { margin: 0 0 40px; padding-bottom: 26px; border-bottom: 1px solid #eef0f2; }
+    .hero h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+    .hero .role { margin: 6px 0 0; font-size: 15px; font-weight: 500; color: #374151; }
+    .hero .tagline { margin: 10px 0 0; font-size: 14.5px; color: #4b5563; max-width: 68ch; }
+    .hero .facts { margin: 14px 0 0; font-size: 12.5px; color: #9ca3af; }
+
     figure { margin: 0 0 44px; }
     figcaption { font-size: 14px; font-weight: 600; color: #111418; margin: 0 0 10px; }
     figcaption span { font-weight: 400; color: #6b7280; }
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border: 1px solid #e8eaed;
-      border-radius: 8px;
+    .star {
+      display: inline-block; vertical-align: middle;
+      font-size: 11px; font-weight: 700; letter-spacing: .02em;
+      color: #c2410c; background: #ffe6d5; border-radius: 999px;
+      padding: 2px 9px; margin-left: 8px;
     }
-    @media (max-width: 560px) { .wrap { padding: 28px 14px 56px; } }
+    .quote {
+      margin: 0 0 12px; font-size: 14.5px; font-style: italic;
+      color: #9a3412;
+    }
+    img {
+      display: block; width: 100%; height: auto;
+      border: 1px solid #e8eaed; border-radius: 8px;
+    }
+
+    figure.is-highlight {
+      background: #fff8f4;
+      border: 1px solid #ffd9c7;
+      border-left: 3px solid #ff6c37;
+      border-radius: 10px;
+      padding: 18px 18px 20px;
+    }
+    figure.is-highlight figcaption span:first-of-type { color: #7c2d12; }
+
+    @media (max-width: 560px) { .wrap { padding: 28px 14px 56px; } .hero h1 { font-size: 23px; } }
     @media print {
       .wrap { padding: 0; max-width: none; }
       figure { break-inside: avoid; page-break-inside: avoid; }
+      figure.is-highlight { background: #fff; }
       img { border-color: #ddd; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>Aviral Gupta — Performance Reviews</h1>
-    <p class="sub">Manager evaluations, FY25 Q3 → FY27 Q1 (in order)</p>
+    <header class="hero">
+      <h1>Aviral Gupta</h1>
+      <p class="role">Software Engineer · Test Infrastructure & Release Engineering @ Postman</p>
+      <p class="tagline">Took the team from weekly to daily releases — stabilizing E2E pipelines and monitoring, and translating emerging AI into practical developer workflows.</p>
+      <p class="facts">Manager evaluations · FY25 Q3 → FY27 Q1 · Rating: Doing Well across all cycles · ★ marks standout quarters</p>
+    </header>
+
     <figure>
       <figcaption>FY25 Q3 <span>Aug 1 – Oct 31, 2024</span></figcaption>
       <img alt="FY25 Q3 performance review (Aug 1 – Oct 31, 2024)" src="images/1-fy25-q3.png" />
@@ -55,16 +84,19 @@
       <figcaption>FY26 Q2 <span>May 1 – Jul 31, 2025</span></figcaption>
       <img alt="FY26 Q2 performance review (May 1 – Jul 31, 2025)" src="images/4-fy26-q2.png" />
     </figure>
-    <figure>
-      <figcaption>FY26 Q3 <span>Aug 1 – Oct 31, 2025</span></figcaption>
+    <figure class="is-highlight">
+      <figcaption>FY26 Q3 <span>Aug 1 – Oct 31, 2025</span> <span class="star">★ Standout</span></figcaption>
+      <p class="quote">“…one of the most dependable team members, and have truly mastered the art of getting things done.”</p>
       <img alt="FY26 Q3 performance review (Aug 1 – Oct 31, 2025)" src="images/5-fy26-q3.png" />
     </figure>
-    <figure>
-      <figcaption>FY26 Q4 <span>Nov 1, 2025 – Jan 31, 2026</span></figcaption>
+    <figure class="is-highlight">
+      <figcaption>FY26 Q4 <span>Nov 1, 2025 – Jan 31, 2026</span> <span class="star">★ Standout</span></figcaption>
+      <p class="quote">“You're delivering at a very high level … your trajectory is very strong.”</p>
       <img alt="FY26 Q4 performance review (Nov 1, 2025 – Jan 31, 2026)" src="images/6-fy26-q4.png" />
     </figure>
-    <figure>
-      <figcaption>FY27 Q1 <span>Feb 1 – Apr 30, 2026</span></figcaption>
+    <figure class="is-highlight">
+      <figcaption>FY27 Q1 <span>Feb 1 – Apr 30, 2026</span> <span class="star">★ Standout</span></figcaption>
+      <p class="quote">“You have operated like a one-man army across multiple initiatives…”</p>
       <img alt="FY27 Q1 performance review (Feb 1 – Apr 30, 2026)" src="images/7-fy27-q1.png" />
     </figure>
   </div>
