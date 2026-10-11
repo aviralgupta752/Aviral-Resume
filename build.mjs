@@ -18,8 +18,9 @@ const PROFILE = {
   },
 };
 
-// Latest N quarters are flagged as standouts (shown with a ★ in the left nav).
-const HIGHLIGHT_LATEST = 3;
+// Hand-picked standout quarters — these get a ★ in the left nav.
+// To change: add/remove an image stem like 'fy26-q2' (order doesn't matter).
+const HIGHLIGHT = ['fy25-q3', 'fy26-q3', 'fy26-q4', 'fy27-q1'];
 
 // Optional per-quarter rating overrides, keyed by image stem (e.g. "fy27-q1").
 const REVIEW_META = {};
@@ -72,8 +73,7 @@ const reviews = readdirSync(IMG_DIR)
   .filter(Boolean)
   .sort((a, b) => a.sort - b.sort);
 
-const cutoff = reviews.length - HIGHLIGHT_LATEST;
-reviews.forEach((r, i) => (r.highlight = i >= cutoff));
+reviews.forEach((r) => (r.highlight = HIGHLIGHT.includes(r.key)));
 const ordered = [...reviews].reverse(); // newest first
 
 const navHtml = ordered

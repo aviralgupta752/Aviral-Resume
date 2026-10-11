@@ -41,9 +41,12 @@ matches the repo. Locally: `node build.mjs` then open `index.html`.
    file stem (e.g. `'fy27-q2'`).
 3. Commit & push (with the account switch above).
 
-The generator computes the quarter's date range from `fy<FY>-q<Q>`, sorts the
-newest quarter to the top, and flags the latest `HIGHLIGHT_LATEST` (default 3) as
-standouts (★ in the left nav) automatically — no other edits needed.
+The generator computes the quarter's date range from `fy<FY>-q<Q>` and sorts the
+newest quarter to the top automatically.
+
+Standouts (★ in the left nav) are **hand-picked**, not automatic: edit the
+`HIGHLIGHT` array in `build.mjs` and add the quarter's stem (e.g. `'fy27-q2'`)
+only if you want it starred.
 
 Full-resolution PNGs are fine: the CI build optimises `images/*.png` with
 `pngquant` before deploy, so you don't need to compress them yourself.

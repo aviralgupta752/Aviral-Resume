@@ -21,7 +21,7 @@ node build.mjs && open index.html
 
 1. Add the screenshot to `images/` named `fy<FY>-q<Q>.png` — e.g. `fy27-q2.png` (no number prefix).
 2. (Optional) add a short pulled quote in `REVIEW_META` in `build.mjs`.
-3. Commit & push. The new quarter sorts to the top automatically, and the latest 3 quarters are highlighted.
+3. Commit & push. The new quarter sorts to the top automatically. To star it as a standout, add its stem (e.g. `fy27-q2`) to the `HIGHLIGHT` array in `build.mjs`.
 
 ## Pushing
 
