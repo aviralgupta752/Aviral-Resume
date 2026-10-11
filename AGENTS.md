@@ -1,6 +1,7 @@
 # Repo guide for AI agents
 
-Portfolio site for Aviral Gupta. `index.html` is **generated** — don't hand-edit it.
+Manager-feedback page for Aviral Gupta (linked from his résumé). `index.html` is
+**generated** — don't hand-edit it.
 
 ## ⚠️ Pushing: switch GitHub account first
 
@@ -26,7 +27,7 @@ rejected over HTTPS without it.)
 ## Building
 
 `index.html` is produced by `build.mjs` from:
-- the content data at the top of `build.mjs` (profile, projects, skills, experience, interests), and
+- a little profile data + optional per-quarter quotes at the top of `build.mjs`, and
 - the review screenshots in `images/`, which are **auto-discovered**.
 
 The GitHub Action runs `node build.mjs` on every push, so the live site always
@@ -46,5 +47,5 @@ automatically — no other edits needed.
 
 ## Editing content
 
-Profile, projects, skills, experience, and interests are plain data arrays at the
-top of `build.mjs`. Edit there, run `node build.mjs`, commit, push.
+The profile fields and the optional per-quarter pull-quotes (`REVIEW_META`) live
+as data at the top of `build.mjs`. Edit there, run `node build.mjs`, commit, push.
