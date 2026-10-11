@@ -80,7 +80,7 @@ const reviewsHtml = ordered.map((r) => {
       </figure>`;
 }).join('\n');
 
-const { linkedin, github, email } = PROFILE.links;
+const { linkedin, email } = PROFILE.links;
 const year = new Date().getFullYear();
 
 const html = `<!doctype html>
@@ -144,7 +144,7 @@ ${reviewsHtml}
 
     <footer>
       <span>© ${year} ${esc(PROFILE.name)}</span>
-      <span><a href="${linkedin}" target="_blank" rel="noopener">LinkedIn</a> · <a href="${github}" target="_blank" rel="noopener">GitHub</a> · <a href="mailto:${email}">Email</a></span>
+      <span><a href="${linkedin}" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:${email}">Email</a></span>
     </footer>
   </div>
 </body>
