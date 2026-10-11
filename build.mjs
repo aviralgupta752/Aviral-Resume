@@ -14,7 +14,6 @@ const PROFILE = {
   title: 'Software Engineer 2 · Developer Productivity & Test Infrastructure',
   links: {
     linkedin: 'https://www.linkedin.com/in/aviral-gupta-754341152/',
-    github: 'https://github.com/aviralgupta752',
     email: 'guptaavi352@gmail.com',
   },
 };
@@ -70,11 +69,17 @@ const cutoff = reviews.length - HIGHLIGHT_LATEST;
 reviews.forEach((r, i) => (r.highlight = i >= cutoff));
 const ordered = [...reviews].reverse(); // newest first
 
+const navHtml = ordered
+  .map(
+    (r) => `          <a class="qnav-link" href="#${esc(r.key)}">${esc(r.label)}${r.highlight ? ' <span class="qstar">★</span>' : ''}</a>`
+  )
+  .join('\n');
+
 const reviewsHtml = ordered.map((r) => {
   const cls = r.highlight ? ' class="is-highlight"' : '';
   const star = r.highlight ? ' <span class="star">★ Standout</span>' : '';
   const quote = r.highlight && r.quote ? `\n        <p class="rquote">“${esc(r.quote)}”</p>` : '';
-  return `      <figure${cls}>
+  return `      <figure id="${esc(r.key)}"${cls}>
         <figcaption><span class="rlabel">${esc(r.label)}</span> <span class="rperiod">${esc(r.period)}</span> <span class="rating">${esc(r.rating)}</span>${star}</figcaption>${quote}
         <img loading="lazy" alt="${esc(r.label)} manager performance review (${esc(r.period)})" src="images/${esc(r.file)}" />
       </figure>`;
@@ -96,20 +101,29 @@ const html = `<!doctype html>
       --good: #15803d; --good-ink: #166534; --good-soft: #dcfce7; --good-line: #bbf7d0; --good-bg: #f0fdf4; --good-accent: #16a34a;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0; background: #fff; color: var(--ink);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.5; -webkit-font-smoothing: antialiased;
     }
-    .wrap { max-width: 1072px; margin: 0 auto; padding: 48px 24px 72px; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 48px 24px 72px; }
 
-    header.page { margin: 0 0 40px; padding-bottom: 26px; border-bottom: 1px solid var(--line); }
+    header.page { margin: 0 0 36px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
     header.page h1 { font-size: 27px; font-weight: 800; letter-spacing: -.02em; margin: 0; }
     header.page .role { margin: 7px 0 0; font-size: 15px; color: var(--muted); }
-    header.page .facts { margin: 14px 0 0; font-size: 12.5px; color: #9ca3af; }
+
+    .layout { display: grid; grid-template-columns: 164px 1fr; gap: 40px; align-items: start; }
+    .side { position: sticky; top: 24px; }
+    .qnav-title { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: #9ca3af; font-weight: 700; margin: 0 0 8px 11px; }
+    .qnav { display: flex; flex-direction: column; gap: 2px; }
+    .qnav-link { display: flex; align-items: center; gap: 7px; text-decoration: none; color: var(--muted); font-size: 13.5px; font-weight: 500; padding: 7px 11px; border-radius: 8px; border-left: 2px solid transparent; transition: background .12s, color .12s; }
+    .qnav-link:hover { color: var(--ink); background: var(--soft); }
+    .qnav-link.active { color: var(--good-ink); background: var(--good-bg); border-left-color: var(--good-accent); font-weight: 700; }
+    .qstar { color: var(--good); font-size: 11px; }
 
     .reviews { display: grid; gap: 38px; }
-    figure { margin: 0; }
+    figure { margin: 0; scroll-margin-top: 16px; }
     figcaption { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; margin: 0 0 10px; }
     .rlabel { font-weight: 600; }
     .rperiod { color: var(--muted); }
@@ -123,8 +137,18 @@ const html = `<!doctype html>
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--good); }
 
+    @media (max-width: 760px) {
+      .layout { grid-template-columns: 1fr; gap: 18px; }
+      .side { position: static; }
+      .qnav-title { margin-left: 2px; }
+      .qnav { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+      .qnav-link { border-left: 0; border: 1px solid var(--line); padding: 5px 10px; }
+      .qnav-link.active { border-color: var(--good-line); }
+    }
     @media (max-width: 560px) { .wrap { padding: 28px 14px 56px; } }
     @media print {
+      .side { display: none; }
+      .layout { grid-template-columns: 1fr; }
       figure, header.page { break-inside: avoid; }
       figure.is-highlight { background: #fff; }
     }
@@ -135,18 +159,44 @@ const html = `<!doctype html>
     <header class="page">
       <h1>${esc(PROFILE.name)}</h1>
       <p class="role">${esc(PROFILE.title)}</p>
-      <p class="facts">Quarterly manager feedback · most recent first · Rated “${esc(DEFAULT_RATING)}” across all cycles · ★ marks standout quarters</p>
     </header>
 
-    <main class="reviews">
+    <div class="layout">
+      <aside class="side">
+        <div class="qnav-title">Quarters</div>
+        <nav class="qnav" aria-label="Jump to quarter">
+${navHtml}
+        </nav>
+      </aside>
+
+      <main class="reviews">
 ${reviewsHtml}
-    </main>
+      </main>
+    </div>
 
     <footer>
       <span>© ${year} ${esc(PROFILE.name)}</span>
       <span><a href="${linkedin}" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:${email}">Email</a></span>
     </footer>
   </div>
+
+  <script>
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.qnav-link'));
+      var byId = {};
+      links.forEach(function (l) { byId[l.getAttribute('href').slice(1)] = l; });
+      if (!('IntersectionObserver' in window) || !links.length) return;
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          links.forEach(function (l) { l.classList.remove('active'); });
+          var active = byId[e.target.id];
+          if (active) active.classList.add('active');
+        });
+      }, { rootMargin: '-15% 0px -75% 0px', threshold: 0 });
+      document.querySelectorAll('figure[id]').forEach(function (f) { obs.observe(f); });
+    })();
+  </script>
 </body>
 </html>
 `;
