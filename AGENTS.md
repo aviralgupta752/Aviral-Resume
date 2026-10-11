@@ -42,8 +42,11 @@ matches the repo. Locally: `node build.mjs` then open `index.html`.
 3. Commit & push (with the account switch above).
 
 The generator computes the quarter's date range from `fy<FY>-q<Q>`, sorts the
-newest quarter to the top, and highlights the latest `HIGHLIGHT_LATEST` (default 3)
-automatically — no other edits needed.
+newest quarter to the top, and flags the latest `HIGHLIGHT_LATEST` (default 3) as
+standouts (★ in the left nav) automatically — no other edits needed.
+
+Full-resolution PNGs are fine: the CI build optimises `images/*.png` with
+`pngquant` before deploy, so you don't need to compress them yourself.
 
 ## Editing content
 
